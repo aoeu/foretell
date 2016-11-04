@@ -1,8 +1,12 @@
 # foretell
 Just foretell the weather in NYC 
 
+## Release notes for version c058750
+* Move the bar charts to just below the operating system's status bar.
+* Add superflous wind and aviation bar charts, just because.
+
 ## Release notes for version faa3461
-* Shows bar charts that represent the 24-hour weather forecast
+* Shows bar charts that represent the 24-hour weather forecast.
 * Uses web services provided by the National Oceanographic and Atmospheric Administration of the United States to obtain charts to display
 * Features an application name that:
   * Says what the application does.
