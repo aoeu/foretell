@@ -1,13 +1,14 @@
 package aoeu.foretell;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
+
+import go.noaa.Noaa;
 
 public class MainActivity extends Activity {
 
-  final Uri weatherUri = Uri.parse("http://forecast.weather.gov/meteograms/Plotter.php?lat=40.704&lon=-73.946&wfo=OKX&zcode=NYZ075&gset=20&gdiff=10&unit=0&tinfo=EY5&ahour=0&pcmd=11011111111110111000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=24&pqpfhr=6&psnwhr=6");
   WebView view;
 
   @Override
@@ -26,6 +27,6 @@ public class MainActivity extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
-    view.loadUrl(weatherUri.toString());
+    view.loadUrl(Noaa.nycMeteogramURL());
   }
 }

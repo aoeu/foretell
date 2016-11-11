@@ -6,8 +6,11 @@ appName = app
 apkPath = $(appName)/build/outputs/apk/$(appName)-debug.apk
 adb = adb -s $(device)
 
-default: assemble install start 
+default: bind assemble install start
 
+bind:
+		gomobile bind -target=android github.com/aoeu/foretell/noaa && mv noaa.aar noaa/
+	
 assemble:
 	(./gradlew assembleDebug 2>&1 | grep -v '^:.*:.*' | grep -v 'incubating') 1>&2
 
