@@ -1,4 +1,4 @@
-package aoeu.foretell;
+package x.foretell;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.webkit.WebView;
 
 import go.noaa.Noaa;
 
-public class MainActivity extends Activity {
+public class Main extends Activity {
 
   WebView view;
 
