@@ -1,7 +1,6 @@
-device=$(shell adb devices | grep '[0-9]' | head -1 | cut -d'	' -f1)
-packageName= $(shell xmllint -xpath 'string(//manifest/@package)' AndroidManifest.xml)
-mainActivityName=$(shell sed -e 's/android://g' AndroidManfiest.xml | xmllint -xpath 'string(//activity[descendant::action[@name="android.intent.action.MAIN"]]/@name)' - )
-
+device = $(shell adb devices | grep '[0-9]' | head -1 | cut -d'	' -f1)
+packageName = $(shell xmllint -xpath 'string(//manifest/@package)' AndroidManifest.xml)
+mainActivityName = $(shell sed -e 's/android://g' AndroidManifest.xml | xmllint -xpath 'string(//activity[descendant::action[@name="android.intent.action.MAIN"]]/@name)' - )
 
 appName = app
 apkPath = $(appName).apk
@@ -24,5 +23,4 @@ install:
 	$(adb) install -r $(apkPath)
 
 start:
-	echo $$device $$packageName $$mainActivityName
-	$(adb) shell am start -n $(packageName)/$(packageName).Main
+	$(adb) shell am start -n $(packageName)/$(packageName)$(mainActivityName)
