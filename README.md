@@ -1,6 +1,11 @@
 # foretell
 Just foretell the weather in NYC 
 
+## Relase notes for version 30991b
+* Simplify project structure and speed-up build time by removing gradle.
+* Temporarily bypass gomobile bindings. 
+* Remove use of web-views, which can erroneously force web-browsers to open.
+
 ## Release notes for version c058750
 * Move the bar charts to just below the operating system's status bar.
 * Add superflous wind and aviation bar charts, just because.
