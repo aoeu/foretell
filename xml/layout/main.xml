@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
   android:id="@+id/activity_main"
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context="aoeu.foretell.MainActivity"
-  android:layout_gravity="center"
-  android:gravity="center"
-  android:padding="24dp"
+  android:layout_height="wrap_content"
+android:paddingTop="@dimen/status_bar_height"
   >
 
   <!-- Padding on the WebView since the widget is being stubborn about centering the content. -->
-  <WebView
-    android:id="@+id/webview"
+  <ImageView
+    android:id="@+id/image"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="24dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
+    android:scaleType="fitStart" 
   />
 
-</RelativeLayout>
+</ScrollView>
