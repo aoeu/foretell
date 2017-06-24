@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/aoeu/noaa"
+	"github.com/aoeu/foretell/noaa"
 )
 
 func main() {

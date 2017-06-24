@@ -1,12 +1,13 @@
-device = $(shell adb devices | grep '[0-9]' | head -1 | cut -d'	' -f1)
-packageName = $(xmllint -xpath 'string(//manifest/@package)' AndroidManifest.xml)
-mainActivityName = $(sed -e 's/android://g' AndroidManfiest.xml | xmllint -xpath 'string(//activity[descendant::action[@name="android.intent.action.MAIN"]]/@name)' - )
+device=$(shell adb devices | grep '[0-9]' | head -1 | cut -d'	' -f1)
+packageName= $(shell xmllint -xpath 'string(//manifest/@package)' AndroidManifest.xml)
+mainActivityName=$(shell sed -e 's/android://g' AndroidManfiest.xml | xmllint -xpath 'string(//activity[descendant::action[@name="android.intent.action.MAIN"]]/@name)' - )
+
 
 appName = app
 apkPath = $(appName).apk
 adb = adb -s $(device)
 
-default: bind assemble install start
+default: build install start
 
 install-gomobile:
 	$ANDROID_HOME/tools/bin/sdkmanager ndk-bundle && \
@@ -15,6 +16,9 @@ install-gomobile:
 
 bind:
 	gomobile bind -target=android github.com/aoeu/foretell/noaa && mv noaa.aar lib/
+
+build:
+	./build.sh
 	
 assemble:
 	(./gradlew assembleDebug 2>&1 | grep -v '^:.*:.*' | grep -v 'incubating') 1>&2
@@ -26,4 +30,5 @@ install:
 	$(adb) install -r $(apkPath)
 
 start:
-	$(adb) shell am start -n $(packageName)/$(packageName)$(mainActivityName)
+	echo $$device $$packageName $$mainActivityName
+	$(adb) shell am start -n $(packageName)/$(packageName).Main

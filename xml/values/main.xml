@@ -7,8 +7,5 @@
 
   <string name="app_name">• W̖̘̻̪̝͕͆E̳̬͓͖͎͍ͮ̅̇̽̈́̄̋Ȧ̘̽T̡̤̤̪̫̝̪̊͌H̝̦ͯͮ̓͊͢Ẹ͚̞͛̒̂̏̓͑R͓̱̖̺̪̘̝͊ͬͤ͌̒͛ͪ́ ̨̮̫̱̒ͮ̿͗̚ͅͅ ͈̗͔͖̖̗̹ͥĩ̝̯͇̙͖͔̂̇ͥ͌̐̀͝n̞͈̬̣̗̈ͮ̄ͮ̉͌ͦ ̠̈̍̐̕ ̲́̊̂ͨ ͔̫͆͋̔͆̕Ņͦ̄̒͌Ÿ̻ͫ̏͆ͣ̆͗C̓̄</string>
 
-  <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar.TranslucentDecor">
-    <item name="android:paddingTop">@dimen/status_bar_height</item>
-    <item name="android:paddingLeft">8dp</item>
-  </style>
+  <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar.TranslucentDecor" />
 </resources>

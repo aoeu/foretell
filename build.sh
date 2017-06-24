@@ -31,11 +31,11 @@ main() {
 	makeOutputDirs && \
 	generateJavaFileForAndroidResources && \
 	compileJavaSourceFilesToJavaVirtualMachineBytecode && \
-#	translateJavaVirtualMachineMBytecodeToAndroidRuntimeBytecode && \
-#	createUnalignedAndroidApplicationPackage && \
-#	addAndroidRuntimeBytecodeToAndroidApplicationPackage && \
-#	signAndroidApplicationPackageWithDebugKey && \
-#	alignUncompressedDataInZipFileToFourByteBoundariesForFasterMemoryMappingAtRuntime  && \
+	translateJavaVirtualMachineMBytecodeToAndroidRuntimeBytecode && \
+	createUnalignedAndroidApplicationPackage && \
+	addAndroidRuntimeBytecodeToAndroidApplicationPackage && \
+	signAndroidApplicationPackageWithDebugKey && \
+	alignUncompressedDataInZipFileToFourByteBoundariesForFasterMemoryMappingAtRuntime  && \
 	cleanup
 }
 
@@ -64,7 +64,7 @@ compileJavaSourceFilesToJavaVirtualMachineBytecode() {
 	echo "TODO: Why aren't .aar files (or the extracted classes.jar)" && \
 	echo "detected by javac even when specified in the -classpath flag?" && \
 	javac \
-		-classpath "$androidLib:$noaaLib" \
+		-classpath "$androidLib:/tmp/c/classes.jar" \
 		-sourcepath "$javaSourcesFilepath:$outputDirForGeneratedSourceFiles" \
 		-d "$outputDirForBytecode" \
 		-target 1.7 \
@@ -78,7 +78,7 @@ translateJavaVirtualMachineMBytecodeToAndroidRuntimeBytecode() {
 }
 
 createUnalignedAndroidApplicationPackage() {
-	$_aapt package -f -M "$manifestFilepath" -S "$resourcesFilepath" -I "$androidLib" -F "$filepathOfUnalignedAPK"
+	$_aapt package -f -M "$manifestFilepath" -S "$resourcesFilepath" -I "$androidLib" -I "$noaaLib" --extra-packages noaa -F "$filepathOfUnalignedAPK" 
 }
 
 addAndroidRuntimeBytecodeToAndroidApplicationPackage() {
