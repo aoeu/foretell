@@ -16,9 +16,7 @@ buildTools=$sdk/build-tools/$(/bin/ls $sdk/build-tools | sort -n | tail -1)
 # ...and the latest platform version.
 platform=$sdk/platforms/$(/bin/ls $sdk/platforms | sort -n |tail -1)
 
-
 androidLib=$platform/android.jar
-noaaLib=$PWD/lib/noaa.aar
 
 _aapt=$buildTools/aapt
 _dx=$buildTools/dx
@@ -78,7 +76,7 @@ translateJavaVirtualMachineMBytecodeToAndroidRuntimeBytecode() {
 }
 
 createUnalignedAndroidApplicationPackage() {
-	$_aapt package -f -M "$manifestFilepath" -S "$resourcesFilepath" -I "$androidLib" -I "$noaaLib" --extra-packages noaa -F "$filepathOfUnalignedAPK" 
+	$_aapt package -f -M "$manifestFilepath" -S "$resourcesFilepath" -I "$androidLib" -F "$filepathOfUnalignedAPK"
 }
 
 addAndroidRuntimeBytecodeToAndroidApplicationPackage() {
