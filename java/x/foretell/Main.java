@@ -12,6 +12,9 @@ import java.lang.Void;
 
 public class Main extends Activity {
 
+  final String s =
+      "https://forecast.weather.gov/meteograms/Plotter.php?ahour=0&gdiff=10&gset=20&hrspan=24&lat=40.704&lg=en&lon=-73.946&pcmd=11011111111110111&tinfo=EY5&unit=0&wfo=OKX&zcode=NYZ075"; // TODO(aoeu): obtain string from gomobile package.
+
   ImageView image;
 
   @Override
@@ -27,28 +30,44 @@ public class Main extends Activity {
       @Override
       protected Bitmap doInBackground(Void... v) {
         Bitmap b = null;
+        java.net.HttpURLConnection c = null;
+        int respCode = 0;
         try {
           // TODO(aoeu): javac can be goaded into compiling by
           // • extracting the noaa.aar (produced by gomobile bind)
           // • pointing to the classes.jar
           // • changing the import here to `import noaa.Noaa` (*instead* of `import go.noaa.Noaa`)
           // Is that the right way to get javac to compile with the noaa.aar library?
-          //  How is the noaa.aar then correctly packaged and referenced?
-          b =
-              BitmapFactory.decodeStream(
-                  new java.net.URL(
-                          "http://forecast.weather.gov/meteograms/Plotter.php?ahour=0&gdiff=10&gset=20&hrspan=24&lat=40.704&lg=en&lon=-73.946&pcmd=11011111111110111&tinfo=EY5&unit=0&wfo=OKX&zcode=NYZ075")
-                      .openStream()); // TODO(aoeu): obtain string from gomobile package.
+          // How is the noaa.aar then correctly packaged and referenced?
+          c = (java.net.HttpURLConnection) new java.net.URL(s).openConnection();
+          b = BitmapFactory.decodeStream(new java.io.BufferedInputStream(c.getInputStream()));
+          respCode = c.getResponseCode();
         } catch (Exception e) {
           Log.e("Error", e.getMessage());
           e.printStackTrace();
+        } finally {
+          if (c != null) {
+            c.disconnect();
+            if (respCode != 200 && respCode != 0) {
+              android.util.Log.w(
+                  Main.this.getClass().getSimpleName(),
+                  String.format("Received HTTP status code %v when downloading image", respCode));
+            }
+          }
         }
         return b;
       }
 
       @Override
       protected void onPostExecute(Bitmap b) {
-        ((ImageView) findViewById(R.id.image)).setImageBitmap(b);
+        if (b == null) {
+          startActivity(
+              new android.content.Intent(android.content.Intent.ACTION_VIEW)
+                  .setData(android.net.Uri.parse(s))
+                  .setPackage("com.android.chrome"));
+        } else {
+          ((ImageView) findViewById(R.id.image)).setImageBitmap(b);
+        }
       }
     }.execute();
   }

@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-  android:id="@+id/activity_main"
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-android:paddingTop="@dimen/status_bar_height"
-  >
+xmlns:_="http://schemas.android.com/apk/res/android"
+_:layout_width="match_parent"
+_:layout_height="wrap_content"
+_:paddingTop="@dimen/status_bar_height"
+>
 
-  <!-- Padding on the WebView since the widget is being stubborn about centering the content. -->
-  <ImageView
-    android:id="@+id/image"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:scaleType="fitStart" 
-  />
+<ImageView
+_:id="@+id/image"
+_:layout_width="match_parent"
+_:layout_height="wrap_content"
+_:scaleType="fitStart"
+/>
 
 </ScrollView>

@@ -8,10 +8,13 @@ adb = adb -s $(device)
 
 default: build install start
 
+fmt:
+	java-fmt -r java/x/foretell/Main.java
+
 install-gomobile:
-	$ANDROID_HOME/tools/bin/sdkmanager ndk-bundle && \
+	$$ANDROID_HOME/tools/bin/sdkmanager ndk-bundle && \
 	go get golang.org/x/mobile/cmd/gomobile && \
-	gomobile init -ndk $ANDROID_HOME/ndk-bundle
+	gomobile init -ndk $$ANDROID_HOME/ndk-bundle
 
 bind:
 	gomobile bind -target=android github.com/aoeu/foretell/noaa && mv noaa.aar lib/
