@@ -1,6 +1,10 @@
 # foretell
 Just foretell the weather in NYC 
 
+## Release notes for version 432fd5
+* Fix a bug (in which HTTP status code 301 was received, but no image) caused by the URL not redirecting and NOAA enforcing HTTPS.
+* Remove excess padding above and below image.
+
 ## Relase notes for version 30991b
 * Simplify project structure and speed-up build time by removing gradle.
 * Temporarily bypass gomobile bindings. 
