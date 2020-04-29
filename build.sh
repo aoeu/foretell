@@ -14,7 +14,10 @@ filepathOfUnalignedAPK="${filepathOfAPK}.unaligned"
 buildTools=$sdk/build-tools/$(/bin/ls $sdk/build-tools | sort -n | tail -1)
 
 # ...and the latest platform version.
-platform=$sdk/platforms/$(/bin/ls $sdk/platforms | sort -n |tail -1)
+platform=$sdk/platforms/$(/bin/ls $sdk/platforms | grep android-25)
+test -z "$platform" && \
+	echo "platform 25 is needed to build against: try $SDK_HOME/bin/sdkmanager 'platforms;android-25'" && \
+	exit 1
 
 androidLib=$platform/android.jar
 
