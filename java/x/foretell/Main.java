@@ -13,7 +13,7 @@ import java.lang.Void;
 public class Main extends Activity {
 
   final String s =
-      "https://forecast.weather.gov/meteograms/Plotter.php?ahour=0&gdiff=10&gset=20&hrspan=24&lat=40.704&lg=en&lon=-73.946&pcmd=11011111111110111&tinfo=EY5&unit=0&wfo=OKX&zcode=NYZ075"; // TODO(aoeu): obtain string from gomobile package.
+    "https://forecast.weather.gov/meteograms/Plotter.php?lat=40.7011&lon=-73.9173&wfo=OKX&zcode=NYZ075&gset=20&gdiff=10&unit=0&tinfo=EY5&ahour=0&pcmd=11011111100000000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=12&pqpfhr=6&psnwhr=6";
 
   ImageView image;
 
