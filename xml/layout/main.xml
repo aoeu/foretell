@@ -10,7 +10,7 @@ _:paddingTop="@dimen/status_bar_height"
 _:id="@+id/image"
 _:layout_width="match_parent"
 _:layout_height="wrap_content"
-_:scaleType="fitStart"
+_:scaleType="fitCenter"
 _:adjustViewBounds="true"
 />
 

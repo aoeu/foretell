@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <dimen name="status_bar_height">16dp</dimen>
+  <dimen name="status_bar_height">0dp</dimen>
 
   <string name="app_name">• W̖̘̻̪̝͕͆E̳̬͓͖͎͍ͮ̅̇̽̈́̄̋Ȧ̘̽T̡̤̤̪̫̝̪̊͌H̝̦ͯͮ̓͊͢Ẹ͚̞͛̒̂̏̓͑R͓̱̖̺̪̘̝͊ͬͤ͌̒͛ͪ́ ̨̮̫̱̒ͮ̿͗̚ͅͅ ͈̗͔͖̖̗̹ͥĩ̝̯͇̙͖͔̂̇ͥ͌̐̀͝n̞͈̬̣̗̈ͮ̄ͮ̉͌ͦ ̠̈̍̐̕ ̲́̊̂ͨ ͔̫͆͋̔͆̕Ņͦ̄̒͌Ÿ̻ͫ̏͆ͣ̆͗C̓̄</string>
 
-  <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar.TranslucentDecor" />
+  <style name="AppTheme" parent="android:Theme.NoTitleBar.Fullscreen" />
 </resources>

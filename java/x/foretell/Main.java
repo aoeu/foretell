@@ -21,6 +21,13 @@ public class Main extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
+    hideNavBar();
+  }
+
+  void hideNavBar() {
+    getWindow().getDecorView().setSystemUiVisibility(
+        android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+    );
   }
 
   @Override
