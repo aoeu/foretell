@@ -29,28 +29,7 @@ public class Main extends Activity {
     new AsyncTask<Void, Void, Bitmap>() {
       @Override
       protected Bitmap doInBackground(Void... v) {
-        Bitmap b = null;
-        java.net.HttpURLConnection c = null;
-        int respCode = 0;
-        try {
-          c = (java.net.HttpURLConnection) new java.net.URL(s).openConnection();
-          b = BitmapFactory.decodeStream(new java.io.BufferedInputStream(c.getInputStream()));
-          respCode = c.getResponseCode();
-        } catch (Exception e) {
-          Log.e("Error", e.getMessage());
-          e.printStackTrace();
-        } finally {
-          if (c != null) {
-            c.disconnect();
-            if (respCode != 200 && respCode != 0) {
-              android.util.Log.w(
-                  Main.this.getClass().getSimpleName(),
-                  String.format("Received HTTP status code %v when downloading image", respCode)
-              );
-            }
-          }
-        }
-        return b;
+        return downloadImage(s);
       }
 
       @Override
@@ -67,4 +46,30 @@ public class Main extends Activity {
       }
     }.execute();
   }
+
+  Bitmap downloadImage(String url) {
+    Bitmap b = null;
+    java.net.HttpURLConnection c = null;
+    int respCode = 0;
+    try {
+      c = (java.net.HttpURLConnection) new java.net.URL(url).openConnection();
+      b = BitmapFactory.decodeStream(new java.io.BufferedInputStream(c.getInputStream()));
+      respCode = c.getResponseCode();
+    } catch (Exception e) {
+      Log.e("Error", e.getMessage());
+      e.printStackTrace();
+    } finally {
+      if (c != null) {
+        c.disconnect();
+        if (respCode != 200 && respCode != 0) {
+          android.util.Log.w(
+              Main.this.getClass().getSimpleName(),
+              String.format("Received HTTP status code %v when downloading image", respCode)
+          );
+        }
+      }
+    }
+    return b;
+  }
+
 }
