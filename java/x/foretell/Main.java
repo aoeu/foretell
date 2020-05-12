@@ -41,6 +41,16 @@ public class Main extends Activity {
 	loadImage();
   }
 
+  @Override
+  protected void onPause() {
+    super.onPause();
+    forceNavBarToHideOnResume();
+  }
+
+  void forceNavBarToHideOnResume() {
+    finish();
+  }
+
   void loadImage() {
     new AsyncTask<Void, Void, Bitmap>() {
       @Override
