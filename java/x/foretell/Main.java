@@ -1,10 +1,12 @@
 package x.foretell;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 import java.lang.Exception;
@@ -15,6 +17,7 @@ public class Main extends Activity {
   final String s =
     "https://forecast.weather.gov/meteograms/Plotter.php?lat=40.7011&lon=-73.9173&wfo=OKX&zcode=NYZ075&gset=20&gdiff=10&unit=0&tinfo=EY5&ahour=0&pcmd=11011111100000000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=12&pqpfhr=6&psnwhr=6";
 
+  final Handler h = new Handler();
   ImageView image;
 
   @Override
@@ -33,6 +36,10 @@ public class Main extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
+	loadImage();
+  }
+
+  void loadImage() {
     new AsyncTask<Void, Void, Bitmap>() {
       @Override
       protected Bitmap doInBackground(Void... v) {
@@ -70,8 +77,16 @@ public class Main extends Activity {
               );
         } else {
           ((ImageView) findViewById(R.id.image)).setImageBitmap(b);
+          long delayInMilliseconds = 1000 * 60 * 60;
+          fetchNextImage(delayInMilliseconds);
         }
       }
     }.execute();
   }
+
+  void fetchNextImage(long L) {
+    h.removeCallbacksAndMessages(null);
+    h.postDelayed(new Runnable() { public void run() { loadImage(); } }, L);
+  }
+
 }
