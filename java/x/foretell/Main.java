@@ -1,6 +1,7 @@
 package x.foretell;
 
 import android.app.Activity;
+import android.graphics.ColorMatrixColorFilter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +20,7 @@ public class Main extends Activity {
 
   final Handler h = new Handler();
   ImageView image;
+  boolean shouldInvertImage = false;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,9 @@ public class Main extends Activity {
                   .setPackage("com.android.chrome")
               );
         } else {
-          ((ImageView) findViewById(R.id.image)).setImageBitmap(b);
+          ImageView i = ((ImageView) findViewById(R.id.image));
+          i.setImageBitmap(b);
+          setImageColors(i);
           long delayInMilliseconds = 1000 * 60 * 60;
           fetchNextImage(delayInMilliseconds);
         }
@@ -86,6 +90,35 @@ public class Main extends Activity {
       }
     }
     return b;
+  }
+
+  void setImageColors(ImageView i) {
+    if (shouldInvertImage) {
+      invertImage(i);
+    } else {
+      resetColorFilter(i);
+    }
+    shouldInvertImage = !shouldInvertImage;
+  }
+
+  void resetColorFilter(ImageView i) {
+    float[] normalColors = {
+       1.0f,     0,     0,    0,   0, // red
+          0,  1.0f,     0,    0,   0, // green
+          0,     0,  1.0f,    0,   0, // blue
+          0,     0,     0, 1.0f,   0  // alpha
+    };
+    i.setColorFilter(new ColorMatrixColorFilter(normalColors));
+  }
+
+  void invertImage(ImageView i) {
+    float[] invertedColors = {
+      -1.0f,     0,     0,    0, 255, // red
+          0, -1.0f,     0,    0, 255, // green
+          0,     0, -1.0f,    0, 255, // blue
+          0,     0,     0, 1.0f,   0  // alpha
+    };
+    i.setColorFilter(new ColorMatrixColorFilter(invertedColors));
   }
 
   void fetchNextImage(long L) {
