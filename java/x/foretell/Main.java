@@ -40,12 +40,6 @@ public class Main extends Activity {
         java.net.HttpURLConnection c = null;
         int respCode = 0;
         try {
-          // TODO(aoeu): javac can be goaded into compiling by
-          // • extracting the noaa.aar (produced by gomobile bind)
-          // • pointing to the classes.jar
-          // • changing the import here to `import noaa.Noaa` (*instead* of `import go.noaa.Noaa`)
-          // Is that the right way to get javac to compile with the noaa.aar library?
-          // How is the noaa.aar then correctly packaged and referenced?
           c = (java.net.HttpURLConnection) new java.net.URL(s).openConnection();
           b = BitmapFactory.decodeStream(new java.io.BufferedInputStream(c.getInputStream()));
           respCode = c.getResponseCode();
