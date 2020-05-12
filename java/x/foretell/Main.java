@@ -52,7 +52,8 @@ public class Main extends Activity {
             if (respCode != 200 && respCode != 0) {
               android.util.Log.w(
                   Main.this.getClass().getSimpleName(),
-                  String.format("Received HTTP status code %v when downloading image", respCode));
+                  String.format("Received HTTP status code %v when downloading image", respCode)
+              );
             }
           }
         }
@@ -65,7 +66,8 @@ public class Main extends Activity {
           startActivity(
               new android.content.Intent(android.content.Intent.ACTION_VIEW)
                   .setData(android.net.Uri.parse(s))
-                  .setPackage("com.android.chrome"));
+                  .setPackage("com.android.chrome")
+              );
         } else {
           ((ImageView) findViewById(R.id.image)).setImageBitmap(b);
         }
