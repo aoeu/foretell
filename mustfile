@@ -9,7 +9,7 @@ adb = adb -s $(device)
 default: build install start
 
 fmt:
-	java-fmt -r java/x/foretell/Main.java
+	java-fmt -r java/foretell/weather/Main.java
 
 install-gomobile:
 	$$ANDROID_HOME/tools/bin/sdkmanager ndk-bundle && \

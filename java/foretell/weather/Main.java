@@ -1,4 +1,4 @@
-package x.foretell;
+package foretell.weather;
 
 import android.app.Activity;
 import android.graphics.ColorMatrixColorFilter;
