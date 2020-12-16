@@ -1,10 +1,10 @@
 package foretell.weather;
 
 import android.app.Activity;
-import android.graphics.ColorMatrixColorFilter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ColorMatrixColorFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
