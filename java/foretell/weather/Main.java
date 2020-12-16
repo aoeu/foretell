@@ -27,6 +27,10 @@ public class Main extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
+    loadImage();
+  }
+
+  void loadImage() {
     new AsyncTask<Void, Void, Bitmap>() {
       @Override
       protected Bitmap doInBackground(Void... v) {
