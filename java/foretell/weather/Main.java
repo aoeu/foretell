@@ -37,7 +37,7 @@ public class Main extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
-	loadImage();
+    loadImage();
   }
 
   @Override
