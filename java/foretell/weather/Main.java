@@ -40,16 +40,20 @@ public class Main extends Activity {
       @Override
       protected void onPostExecute(Bitmap b) {
         if (b == null) {
-          startActivity(
-              new android.content.Intent(android.content.Intent.ACTION_VIEW)
-                  .setData(android.net.Uri.parse(s))
-                  .setPackage("com.android.chrome")
-              );
+          loadImageInBrowser();
         } else {
           ((ImageView) findViewById(R.id.image)).setImageBitmap(b);
         }
       }
     }.execute();
+  }
+
+  void loadImageInBrowser() {
+    startActivity(
+      new android.content.Intent(android.content.Intent.ACTION_VIEW)
+        .setData(android.net.Uri.parse(s))
+        .setPackage("com.android.chrome")
+    );
   }
 
   Bitmap downloadImage(String url) {
