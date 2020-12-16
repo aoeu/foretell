@@ -82,8 +82,12 @@ public class Main extends Activity {
     int respCode = 0;
     try {
       c = (java.net.HttpURLConnection) new java.net.URL(url).openConnection();
-      b = BitmapFactory.decodeStream(new java.io.BufferedInputStream(c.getInputStream()));
+      c.setRequestProperty(
+        "User-Agent",
+        "Mozilla/5.0 (X11; Linux x86_64; rv:81.0) Gecko/20100101 Firefox/81.0"
+      );
       respCode = c.getResponseCode();
+      b = BitmapFactory.decodeStream(new java.io.BufferedInputStream(c.getInputStream()));
     } catch (Exception e) {
       android.util.Log.e(
         Main.this.getClass().getSimpleName(),
