@@ -89,14 +89,14 @@ public class Main extends Activity {
       Log.e("Error", e.getMessage());
       e.printStackTrace();
     } finally {
+      if (respCode != 200 && respCode != 0) {
+          android.util.Log.e(
+              Main.this.getClass().getSimpleName(),
+              String.format("Received HTTP status code %d when downloading image", respCode)
+          );
+      }
       if (c != null) {
         c.disconnect();
-        if (respCode != 200 && respCode != 0) {
-          android.util.Log.w(
-              Main.this.getClass().getSimpleName(),
-              String.format("Received HTTP status code %v when downloading image", respCode)
-          );
-        }
       }
     }
     return b;
