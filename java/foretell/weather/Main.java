@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.ImageView;
 import java.lang.Exception;
 import java.lang.Void;
@@ -86,7 +85,10 @@ public class Main extends Activity {
       b = BitmapFactory.decodeStream(new java.io.BufferedInputStream(c.getInputStream()));
       respCode = c.getResponseCode();
     } catch (Exception e) {
-      Log.e("Error", e.getMessage());
+      android.util.Log.e(
+        Main.this.getClass().getSimpleName(),
+        "error: " +  e.getMessage()
+      );
       e.printStackTrace();
     } finally {
       if (respCode != 200 && respCode != 0) {
