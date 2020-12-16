@@ -1,6 +1,10 @@
 # foretell
 Just foretell the weather in NYC 
 
+## Release notes for version 36254f
+* Spoof a User-Agent value in the HTTP request header to circumvent an HTTP Status Code 403 (that occurs without the spoofed User-Agent).
+* Rename the Android package to fluently convey what the app does: `foretell.weather`
+
 ## Release notes for version 432fd5
 * Fix a bug (in which HTTP status code 301 was received, but no image) caused by the URL not redirecting and NOAA enforcing HTTPS.
 * Remove excess padding above and below image.
